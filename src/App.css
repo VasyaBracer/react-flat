@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
+}
+
+.main-container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.menu {
+  background: #999;
+  color: #fff;
+  list-style: none;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.menu li {
+  margin: 0 12px;
+  font-size: 16px;
+}
+
+.menu a {
+  display: inline-block;
+  padding: 6px;
+  color: #fff;
+}
+
+.main-container h2 {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 24px;
+  font-weight: 100;
+}
