@@ -61,7 +61,7 @@ class MapComponent extends React.Component {
         navigator.geolocation.getCurrentPosition(
             function (position) {
                 ymaps
-                    .load('https://api-maps.yandex.ru/2.1/?apikey=a22d3f18-cbce-4ad2-8174-f12d0730bd7f&lang=en_US')
+                    .load('https://api-maps.yandex.ru/2.1/?apikey=YOUR-API-KEYf&lang=en_US')
                     .then(maps => {
                         const map = new maps.Map('map', {
                             center: [position.coords.latitude, position.coords.longitude],
