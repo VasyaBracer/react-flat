@@ -1,65 +1,55 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import AddUser from '../js/AddUser';
 
-const AddUser = connect(
-    null,
-    (dispatch) => ({
-      addUser: () => {
-        dispatch({
-          type: 'addUser',
-          payload: {
-            nickname: 'new',
-            password: 'password',
-            description: 'new-user',
-          },
-        });
-      },
-    })
-  )((props) => (
-    <button onClick={() => props.addUser()}>add usr</button>
-  ));
-  
-  const ClearUsers = connect(
-    null,
-    (dispatch) => ({
-      clearUsers: () => {
-        dispatch({
-          type: 'clearUsers',
-          payload: {},
-        });
-      },
-    })
-  )((props) => (
-    <button onClick={() => props.clearUsers()}>clear</button>
-  ));
-  
-  const ShowUserList = connect(
-    (state) => ({ users: state.users }), // mapStateToProps
-    (dispatch) => ({
-      removeUser: (nickname) => {
-        dispatch({
-          type: 'removeUser',
-          payload: {nickname},
-        });
-      },
-    })
-  )((props) => (
-    <ul>
-      {props.users.map((user) =>
-        (<li key={Math.random()}>{user.nickname}<button onClick={() => props.removeUser(user.nickname)}>remove</button></li>)
-      )}
-    </ul>)
-    );
+const ClearUsers = connect(
+  null,
+  (dispatch) => ({
+    clearUsers: () => {
+      dispatch({
+        type: 'clearUsers',
+        payload: {},
+      });
+    },
+  })
+)((props) => (
+  <button className="clear-users-btn" onClick={() => props.clearUsers()}>Clear List</button>
+));
+
+const ShowUserList = connect(
+  (state) => ({ users: state.users }), // mapStateToProps
+  (dispatch) => ({
+    removeUser: (nickname) => {
+      dispatch({
+        type: 'removeUser',
+        payload: { nickname },
+      });
+    },
+  })
+)((props) => (
+  <ul className="user-list">
+    {props.users.map((user) =>
+      (<li className="users-list-desc" key={Math.random()}>
+          <div className='user-container'>
+          <h3>{user.nickname}</h3>
+      
+          <div className='user-description'>{user.description}</div>
+          <button className="remove-user-btn" onClick={() => props.removeUser(user.nickname)}>Remove</button>
+        </div>
+      </li>)
+    )}
+  </ul>)
+);
 
 export default class ProfilePage extends React.Component {
-    render() {
-        return (
-            <div className='profile-container'>
-                <h2>Profile page</h2>
-                <AddUser />
-                <ClearUsers />
-                <ShowUserList />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className='profile-container'>
+        <h2 className='profile-page-name'>Profile page</h2>
+        <AddUser />
+        <ShowUserList />
+        <ClearUsers />
+      </div>
+    );
+  }
 }
